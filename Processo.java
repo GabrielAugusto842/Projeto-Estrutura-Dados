@@ -1,14 +1,18 @@
 public class Processo {
+    private static int contador = 1;
     private int protocolo; //único, automático e sequencial
     private String solicitante; //quem abriu o processo
     private String tipoServico; // tipo de atendimento, saúde, financeiro
     private int prioridade; //1 - baixa, 2 - normal, 3 - urgente
     private String dataHora; //formato dd/MM/yyyy HH:mm
 
-    public Processo(String solicitante, String tipoServico, int prioridade) {
+    //public Processo(String solicitante, String tipoServico, int prioridade) {
+    public Processo(String solicitante) {
+        this.protocolo = contador;
+        contador++;
         this.solicitante = solicitante;
-        this.tipoServico = tipoServico;
-        this.prioridade = prioridade;
+        //this.tipoServico = tipoServico;
+        //this.prioridade = prioridade;
     }
 
     public int getProtocolo() {
@@ -49,13 +53,14 @@ public class Processo {
 
     @Override
     public String toString() {
-        return "[#" + protocolo + "] " + solicitante + " | " + tipoServico + " | " + prioridade + 
-        " | " + dataHora;
+        return "[#" + protocolo + "] " + solicitante;
+        // + " | " + tipoServico + " | " + prioridade + 
+        //" | " + dataHora;
     }
 
-    public Boolean ComparaProcesso (int protocolo) {
-        //if ((this.protocolo).equals(protocolo)) {
-            return true;
-        //}
+    //Método Equals
+    public int comparaProtocolo (int protocolo) {
+        if (this.protocolo == protocolo) return this.protocolo;
+        else return -1;
     }
 }
