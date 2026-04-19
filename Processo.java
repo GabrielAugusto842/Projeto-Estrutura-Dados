@@ -7,12 +7,12 @@ public class Processo {
     private String dataHora; //formato dd/MM/yyyy HH:mm
 
     //public Processo(String solicitante, String tipoServico, int prioridade) {
-    public Processo(String solicitante) {
+    public Processo(String solicitante, int prioridade) {
         this.protocolo = contador;
         contador++;
         this.solicitante = solicitante;
         //this.tipoServico = tipoServico;
-        //this.prioridade = prioridade;
+        this.prioridade = prioridade;
     }
 
     public int getProtocolo() {
@@ -51,9 +51,22 @@ public class Processo {
         return dataHora;
     }
 
+    public String definePrioridade(int prioridade) {
+        String urgencia;
+        if (prioridade == 1) {
+            urgencia = "baixa";
+        } else if (prioridade == 2) {
+            urgencia = "normal";
+        } else {
+            urgencia = "urgente";
+        }
+        return urgencia;
+    }
+
     @Override
     public String toString() {
-        return "[#" + protocolo + "] " + solicitante;
+        return "[#" + protocolo + "] " + solicitante + " | " +
+        definePrioridade(prioridade) + "\n";
         // + " | " + tipoServico + " | " + prioridade + 
         //" | " + dataHora;
     }

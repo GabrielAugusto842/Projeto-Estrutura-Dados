@@ -12,16 +12,15 @@ public class CentralAtendimento {
         while (!pilhaAuxiliar.estaVazia()) {
             pilhaAuxiliar.pop();
         }
-        //System.out.println("Processo " + processo.getProtocolo() + " adicionado a fila.");
     }
 
     public String atenderProximo() {
         if (!pilhaPrincipal.estaVazia()) {
             Processo processo = pilhaPrincipal.pop();
             pilhaAuxiliar.push(processo);
-            return ("Atendendo agora: " + processo);
+            return ("Atendendo agora: \n" + processo);
         } else {
-            return "Não há nenhum atendimento pendente!";
+            return "Não há nenhum atendimento pendente!\n";
         }
     }
 
@@ -29,20 +28,20 @@ public class CentralAtendimento {
         if (!pilhaAuxiliar.estaVazia()) {
             Processo processo = pilhaAuxiliar.pop();
             pilhaPrincipal.push(processo);
-            return "Processo desfeito e novamente pendente!";
+            return "Processo desfeito e novamente pendente!\n";
         } else {
-            return "Erro: Não há atendimentos para desfazer!";
+            return "Erro: Não há atendimentos para desfazer!\n";
         }
         
     }
 
-    public void listarPendentes() {
+    public String listarPendentes() {
         System.out.println("Pendentes:");
-        pilhaPrincipal.imprimir();
+        return pilhaPrincipal.imprimir();
     }
 
-    public void listarHistorico() {
+    public String listarHistorico() {
         System.out.println("Histórico:");
-        pilhaAuxiliar.imprimir();
+        return pilhaAuxiliar.imprimir();
     }
 }

@@ -6,6 +6,7 @@ public class VetorDinamico {
     public VetorDinamico(int capacidade) {
         processos = new Processo[capacidade];
         this.capacidade = capacidade;
+        ocupacao = 0;
     }
 
     public VetorDinamico() {
