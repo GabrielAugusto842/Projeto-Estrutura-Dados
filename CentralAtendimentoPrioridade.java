@@ -1,9 +1,9 @@
-public class CentralAtendimento {
-    PilhaProcesso pilhaPrincipal; //Atendimentos pendentes
-    PilhaProcesso pilhaAuxiliar; // histórico para desfazer
+public class CentralAtendimentoPrioridade {
+    PilhaPrioridade pilhaPrincipal; //Atendimentos pendentes por prioridade
+    PilhaProcesso pilhaAuxiliar; // histórico para desfazer por prioridade
 
-    public CentralAtendimento() {
-        this.pilhaPrincipal = new PilhaProcesso();
+    public CentralAtendimentoPrioridade() {
+        this.pilhaPrincipal = new PilhaPrioridade();
         this.pilhaAuxiliar = new PilhaProcesso();
     }
 
@@ -15,12 +15,12 @@ public class CentralAtendimento {
     }
 
     public String atenderProximo() {
-        if (!pilhaPrincipal.estaVazia()) {
-            Processo processo = pilhaPrincipal.pop();
+        try {
+             Processo processo = pilhaPrincipal.pop();
             pilhaAuxiliar.push(processo);
             return ("Atendendo agora: \n" + processo);
-        } else {
-            return "Não há nenhum atendimento pendente!\n";
+        } catch (PilhaVaziaException e) {
+            return "Nenhum processo na pilha.\n";
         }
     }
 
@@ -36,10 +36,11 @@ public class CentralAtendimento {
     }
 
     public String listarPendentes() {
-        return "Pendentes:\n" + pilhaPrincipal.imprimir();
+        return "Pendentes:\n" + pilhaPrincipal.listar();
     }
 
     public String listarHistorico() {
         return "Histórico:\n" + pilhaAuxiliar.imprimir();
     }
+
 }
