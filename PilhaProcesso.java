@@ -32,7 +32,7 @@ public class PilhaProcesso {
     }
 
     public String imprimir() {
-        String mensagem = "";
+        String mensagem = ""; //Não colocar Sysout fora da view
         if (vetor.estaVazio()) {
             mensagem = "Pilha vazia.\n";
             return mensagem;

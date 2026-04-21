@@ -5,8 +5,8 @@ public class TestePrioridade {
     public static void main(String[] args) {
         CentralAtendimentoPrioridade central = new CentralAtendimentoPrioridade();
         Scanner scanner = new Scanner(System.in);
-        String solicitante, entrada;
-        int opcao = -1, prioridade;
+        String solicitante, entrada, tipoServico; //entrada recebe o valor do menu para ser convertido para opção
+        int opcao = -1, prioridade; //declarando opção como -1 porque 0 sai do menu
         System.out.println("CENTRAL DE ATENDIMENTO");
         do {
             System.out.print("1 - Abrir novo processo\n" +
@@ -29,24 +29,30 @@ public class TestePrioridade {
                 case 1:
                     System.out.print("Informe o nome do solicitante: ");
                     solicitante = scanner.nextLine();
-                    if (!solicitante.trim().isEmpty()) {
-                        try {
-                            System.out.print("Qual a prioridade? (1 = baixa, 2 = normal, 3 = urgente): ");
-                            prioridade = scanner.nextInt();
-                            scanner.nextLine();
-                            if (prioridade == 1 || prioridade == 2 || prioridade == 3) {
-                                Processo processo = new Processo(solicitante, prioridade);
-                                central.abrirProcesso(processo);
-                                System.out.println("Processo adicionado à fila.\n");
-                            } else {
-                                System.out.println("Informe um número de 1 a 3 para prioridade!\n");
+                    if (!solicitante.trim().isEmpty()) { //verifica vazio
+                        System.out.print("Qual o tipo de atendimento? (Saúde, financeiro, ...): ");
+                        tipoServico = scanner.nextLine();
+                        if (!tipoServico.trim().isEmpty()) { //verifica vazio
+                            try {
+                                System.out.print("Qual a prioridade? (1 = baixa, 2 = normal, 3 = urgente): ");
+                                prioridade = scanner.nextInt();
+                                scanner.nextLine(); //limpa o scanner e previne bug de pular o próximo campo
+                                if (prioridade == 1 || prioridade == 2 || prioridade == 3) {
+                                    Processo processo = new Processo(solicitante, tipoServico, prioridade);
+                                    central.abrirProcesso(processo);
+                                    System.out.println("Processo adicionado à fila.\n");
+                                } else {
+                                    System.out.println("Informe um número de 1 a 3 para prioridade!\n");
+                                }
+                            } catch (InputMismatchException e) {
+                                scanner.nextLine(); //limpa o scanner e previne bug de pular o próximo campo
+                                System.out.println("Você deve informar um número de 1 a 3!\n");
                             }
-                        } catch (InputMismatchException e) {
-                            scanner.nextLine();
-                            System.out.println("Você deve informar um número de 1 a 3!\n");
+                        } else {
+                            System.out.println("Campo Tipo de serviço é obrigatório!\n");
                         }
                     } else {
-                        System.out.println("Campo obrigatório!\n");
+                        System.out.println("Campo Solicitante é obrigatório!\n");
                     }
                     break;
                 case 2:

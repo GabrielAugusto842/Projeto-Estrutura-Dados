@@ -1,4 +1,5 @@
 public class PilhaPrioridade {
+    //Instancias de pilha processo por prioridade
     PilhaProcesso pilhaBaixa;
     PilhaProcesso pilhaNormal;
     PilhaProcesso pilhaUrgente;
@@ -47,12 +48,14 @@ public class PilhaPrioridade {
         return processo;
     }
 
+    //Exibe quantos processos estão abertos independente da prioridade
     public int tamanho() {
         int tamanho = 0;
         tamanho = pilhaUrgente.pegarTamanho() + pilhaNormal.pegarTamanho() + pilhaBaixa.pegarTamanho();
         return tamanho;
     }
 
+    //Exibe os processos na ordem de prioridade
     public String listar() {
         String listagem = "Lista de processos por prioridade:\n";
         listagem += "Urgentes:\n" + pilhaUrgente.imprimir();
