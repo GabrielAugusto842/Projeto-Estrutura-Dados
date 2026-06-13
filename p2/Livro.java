@@ -12,6 +12,7 @@ public class Livro {
         this.titulo = titulo;
         this.autor = autor;
         this.anoPub = anoPub;
+        this.disponivel = true;
     }
 
     public String getIsbn() {
@@ -38,10 +39,6 @@ public class Livro {
         return anoPub;
     }
 
-    /*public void setAnoPub(int anoPub) {
-        this.anoPub = anoPub;
-    }*/
-
     public boolean getDisponivel() {
         return disponivel;
     }
@@ -63,9 +60,8 @@ public class Livro {
     }
 
     //Método Equals
-    public String comparaIsbn (String isbn) {
-        if (isbn.equals(isbn)) return this.isbn;
-        else return "ISBN diferente";
+    public Boolean comparaIsbn (String isbn) {
+        return this.isbn.equals(isbn);
     }
     
 }

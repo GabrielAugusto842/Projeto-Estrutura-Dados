@@ -1,9 +1,9 @@
 package p2;
 
-public class NoDuplo<Livro> {
+public class NoDuplo {
     private Livro info;
-    private NoDuplo<Livro> proximo;
-    private NoDuplo<Livro> anterior;
+    private NoDuplo proximo;
+    private NoDuplo anterior;
 
     public NoDuplo(Livro info) {
         this.info = info;
@@ -15,25 +15,25 @@ public class NoDuplo<Livro> {
         return info;
     }
 
-    public NoDuplo<Livro> getProximo() {
+    public NoDuplo getProximo() {
         return proximo;
     }
 
-    public void setProximo(NoDuplo<Livro> proximo) {
+    public void setProximo(NoDuplo proximo) {
         this.proximo = proximo;
     }
 
-    public NoDuplo<Livro> getAnterior() {
+    public NoDuplo getAnterior() {
         return anterior;
     }
 
-    public void setAnterior(NoDuplo<Livro> anterior) {
+    public void setAnterior(NoDuplo anterior) {
         this.anterior = anterior;
     }
 
     @Override
     public String toString() {
-        return "[" + info + "]";
+        return info + " |";
     }
 
 }
